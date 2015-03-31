@@ -1,3 +1,3 @@
 # wsy_scroller (working...)
 
-ÓÃÓÚÊµÏÖ iscroll ÀàĞ§¹û.
+ç”¨äºå®ç° iscroll ç±»æ•ˆæœ.
