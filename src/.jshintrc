@@ -51,6 +51,7 @@
   "passfail": false,
   "white": true,
   "esnext": true,
+  "-W072": true,
   "globals": {
     "require": true,
     "document": true,

@@ -4,6 +4,8 @@
 'use strict';
 var gulp = require('gulp');
 var webpack = require('gulp-webpack');
+var uglify = require('gulp-uglify');
+
 gulp.task('webpack', function() {
     return gulp.src('src/index.js')
         .pipe(webpack({
@@ -32,5 +34,21 @@ gulp.task('webpack-dev', function() {
                 ]
             }
         }))
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('build', function() {
+    return gulp.src('src/index.js')
+        .pipe(webpack({
+            output:{
+                filename: 'build.min.js'
+            },
+            module:{
+                loaders: [
+                    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
+                ]
+            }
+        }))
+        .pipe(uglify())
         .pipe(gulp.dest('dist/'));
 });

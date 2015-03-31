@@ -1,6 +1,9 @@
 /**
  * Created by shuyi.wu on 2015/4/1.
  */
+/**
+ * use: get browser prefix
+ */
 import engine from './detectEngine';
 
 var allPrefixJs,
@@ -34,7 +37,6 @@ allPrefixJsStyle= {
 vendorPrefixJs = allPrefixJs[engine];
 vendorPrefixCss = allPrefixCss[engine];
 vendorPrefixJsStyle = allPrefixJsStyle[engine];
-
 
 export var js =  vendorPrefixJs;
 export var css =  vendorPrefixCss;
