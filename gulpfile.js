@@ -54,7 +54,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('test', function() {
-    return gulp.src('src/test/Animal.es6')
+    return gulp.src('src/test/app.es6')
         .pipe(webpack({
             watch: true,
             output:{
