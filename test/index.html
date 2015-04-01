@@ -32,6 +32,10 @@
 	<link rel="stylesheet" href="assets/css/reset.css" /><!-- css 重置 -->
 	<link rel="stylesheet" href="assets/css/style.css" />
 	<!-- modernizr 用于处理 各浏览器 兼容 因为要 处理css样式兼容 所以 头部加载 -->
+	<!--[if lte IE 8]>
+	<script src="./assets/libs/es5-shim/4.1.0/es5-shim.js"></script>
+	<script src="./assets/libs/es5-shim/4.1.0/es5-sham.js"></script>
+	<![endif]-->
 	<script src="assets/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
 
@@ -41,7 +45,8 @@
 
 </div>
 <!-- js 紧贴</body> 页面渲染完成 后处理 js 有助于 加快 页面响应速度 -->
-<script src="../dist/build.js"></script>
+<!--<script src="../dist/build.js"></script>-->
+<script src="../src/test/build.js"></script>
 <!--<script src='assets/libs/jquery/1.11.2/jquery.min.js'></script>-->
 <!--<script src="assets/js/functions.js"></script>-->
 </body>

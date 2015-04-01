@@ -52,3 +52,19 @@ gulp.task('build', function() {
         .pipe(uglify())
         .pipe(gulp.dest('dist/'));
 });
+
+gulp.task('test', function() {
+    return gulp.src('src/test/Animal.es6')
+        .pipe(webpack({
+            output:{
+                filename: 'build.js'
+            },
+            module:{
+                loaders: [
+                    { test: /\.es6$/, exclude: /node_modules/, loader: 'babel-loader'}
+                ]
+            }
+        }))
+        //.pipe(uglify())
+        .pipe(gulp.dest('src/test/'));
+});
