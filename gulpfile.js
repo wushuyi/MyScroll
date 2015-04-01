@@ -56,6 +56,7 @@ gulp.task('build', function() {
 gulp.task('test', function() {
     return gulp.src('src/test/Animal.es6')
         .pipe(webpack({
+            watch: true,
             output:{
                 filename: 'build.js'
             },
