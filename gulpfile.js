@@ -54,7 +54,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('test', function() {
-    return gulp.src('src/test/app.es6')
+    return gulp.src('src/test/app.js')
         .pipe(webpack({
             watch: true,
             output:{
@@ -62,7 +62,7 @@ gulp.task('test', function() {
             },
             module:{
                 loaders: [
-                    { test: /\.es6$/, exclude: /node_modules/, loader: 'babel-loader'}
+                    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
                 ]
             }
         }))

@@ -1,7 +1,7 @@
 /**
  * Created by shuyi.wu on 2015/4/1.
  */
-import Animal from './Animal.es6';
+import Animal from './Animal';
 
 class Dog extends Animal{
     /**
