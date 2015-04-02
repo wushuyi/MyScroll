@@ -1,10 +1,10 @@
 /**
  * Created by shuyi.wu on 2015/4/2.
  */
-import Scroller from './myScroll';
+import MyScroll from './myScroll';
 import {vendorPrefixJsStyle} from './util/vendorPrefix';
 
-class EasyScroller {
+class MyEasyScroll {
     constructor(content, options) {
         this.content = content;
         this.container = content.parentNode;
@@ -12,26 +12,25 @@ class EasyScroller {
 
         // create Scroller instance
         var that = this;
-        this.scroller = new Scroller(function (left, top, zoom) {
+        this.scroller = new MyScroll(function (left, top, zoom) {
             that.render(left, top, zoom);
         }, options);
 
         this.render = (function () {
-            var vendorPrefix = EasyScroller.vendorPrefix = vendorPrefixJsStyle;
+            var vendorPrefix = MyEasyScroll.vendorPrefix = vendorPrefixJsStyle;
 
             var helperElem = document.createElement('div');
-            var undef;
 
             var perspectiveProperty = vendorPrefix + 'Perspective';
             var transformProperty = vendorPrefix + 'Transform';
 
-            if (helperElem.style[perspectiveProperty] !== undef) {
+            if (helperElem.style[perspectiveProperty] !== undefined) {
 
                 return function (left, top, zoom) {
                     this.content.style[transformProperty] = 'translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')';
                 };
 
-            } else if (helperElem.style[transformProperty] !== undef) {
+            } else if (helperElem.style[transformProperty] !== undefined) {
 
                 return function (left, top, zoom) {
                     this.content.style[transformProperty] = 'translate(' + (-left) + 'px,' + (-top) + 'px) scale(' + zoom + ')';
@@ -51,12 +50,11 @@ class EasyScroller {
         this.bindEvents();
 
         // the content element needs a correct transform origin for zooming
-        this.content.style[EasyScroller.vendorPrefix + 'TransformOrigin'] = 'left top';
+        this.content.style[MyEasyScroll.vendorPrefix + 'TransformOrigin'] = 'left top';
 
         // reflow for the first time
         this.reflow();
     }
-
 
     reflow() {
 
@@ -165,4 +163,5 @@ class EasyScroller {
     }
 }
 
-export default EasyScroller;
+export default MyEasyScroll;
+window.MyEasyScroll = MyEasyScroll;

@@ -5,7 +5,7 @@ import effect from './util/animate';
 import noop from './util/noop';
 import {easeOutCubic, easeInOutCubic} from './util/tween';
 
-class Scroller {
+class MyScroll {
     constructor(callback, options) {
         this.__callback = callback;
         this.options = {
@@ -1272,4 +1272,4 @@ class Scroller {
     }
 }
 
-export default Scroller;
+export default MyScroll;

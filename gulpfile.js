@@ -38,7 +38,7 @@ gulp.task('webpack-dev', function() {
 });
 
 gulp.task('build', function() {
-    return gulp.src('src/index.js')
+    return gulp.src('src/easyMyScroll.js')
         .pipe(webpack({
             output:{
                 filename: 'build.min.js'
@@ -67,5 +67,5 @@ gulp.task('test', function() {
             }
         }))
         //.pipe(uglify())
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./test/assets/js/'));
 });
