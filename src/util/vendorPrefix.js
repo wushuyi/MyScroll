@@ -6,7 +6,7 @@
  */
 import engine from './detectEngine';
 
-var allPrefixJs,
+let allPrefixJs,
     allPrefixCss,
     allPrefixJsStyle,
     vendorPrefixJs,
@@ -38,6 +38,6 @@ vendorPrefixJs = allPrefixJs[engine];
 vendorPrefixCss = allPrefixCss[engine];
 vendorPrefixJsStyle = allPrefixJsStyle[engine];
 
-export var js =  vendorPrefixJs;
-export var css =  vendorPrefixCss;
-export var style =  vendorPrefixJsStyle;
+export let js =  vendorPrefixJs;
+export let css =  vendorPrefixCss;
+export let style =  vendorPrefixJsStyle;

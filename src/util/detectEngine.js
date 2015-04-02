@@ -5,10 +5,10 @@
  * use: get browser engine name
  */
 
-var win = window;
-var doc = document;
-var docStyle = doc.documentElement.style;
-var engine;
+let win = window,
+    doc = document,
+    docStyle = doc.documentElement.style,
+    engine;
 if (win.opera && Object.prototype.toString.call(win.opera) === '[object Opera]') {
     engine = 'presto';
 } else if ('MozAppearance' in docStyle) {

@@ -5,8 +5,33 @@
  * use: polyfill standard requestAnimationFrame and cancelAnimationFrame
  */
 import * as vendorPrefix from './vendorPrefix';
-var win = window;
-var lastTime = 0;
+let win = window,
+    lastTime = 0;
+
+/**
+ * polyfill requestAnimationFrame
+ * @param callback
+ * @returns {number}
+ */
+const polyfillRequestAnimationFrame = function requestAnimationFrame(callback) {
+    'use strict';
+    let currTime = new Date().getTime(),
+        timeToCall = Math.max(0, 16 - (currTime - lastTime)),
+        id = win.setTimeout(function() {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+
+    lastTime = currTime + timeToCall;
+    return id;
+};
+/**
+ * polyfill cancelAnimationFrame
+ * @param id {number} requestAnimationFrame id
+ */
+const polyfillCancelAnimationFrame = function cancelAnimationFrame(id) {
+    'use strict';
+    clearTimeout(id);
+};
 /**
  * get standard requestAnimationFrame
  */
@@ -18,28 +43,7 @@ win[vendorPrefix.js + 'RequestAnimationFrame'];
 win.cancelAnimationFrame = win.cancelAnimationFrame ||
 win[vendorPrefix.js + 'CancelAnimationFrame'] ||
 win[vendorPrefix.js + 'CancelRequestAnimationFrame'];
-/**
- * polyfill requestAnimationFrame
- * @param callback
- * @returns {number}
- */
-var polyfillRequestAnimationFrame = function requestAnimationFrame(callback) {
-    'use strict';
-    var currTime = new Date().getTime();
-    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-    var id = win.setTimeout(function() { callback(currTime + timeToCall); },
-        timeToCall);
-    lastTime = currTime + timeToCall;
-    return id;
-};
-/**
- * polyfill cancelAnimationFrame
- * @param id {number} requestAnimationFrame id
- */
-var polyfillCancelAnimationFrame = function cancelAnimationFrame(id) {
-    'use strict';
-    clearTimeout(id);
-};
+
 
 if (!win.requestAnimationFrame) {
     win.requestAnimationFrame = polyfillRequestAnimationFrame;

@@ -54,9 +54,9 @@ gulp.task('build', function() {
 });
 
 gulp.task('test', function() {
-    return gulp.src('src/test/app.js')
+    return gulp.src('src/test.js')
         .pipe(webpack({
-            watch: true,
+            //watch: true,
             output:{
                 filename: 'build.js'
             },
@@ -67,5 +67,5 @@ gulp.task('test', function() {
             }
         }))
         //.pipe(uglify())
-        .pipe(gulp.dest('src/test/'));
+        .pipe(gulp.dest('./dist'));
 });
