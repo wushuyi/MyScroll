@@ -4,7 +4,7 @@
 /**
  * use: polyfill standard requestAnimationFrame and cancelAnimationFrame
  */
-import * as vendorPrefix from './vendorPrefix';
+import {vendorPrefixJs} from './vendorPrefix';
 let win = window,
     lastTime = 0;
 
@@ -36,13 +36,13 @@ const polyfillCancelAnimationFrame = function cancelAnimationFrame(id) {
  * get standard requestAnimationFrame
  */
 win.requestAnimationFrame = win.requestAnimationFrame ||
-win[vendorPrefix.js + 'RequestAnimationFrame'];
+win[vendorPrefixJs + 'RequestAnimationFrame'];
 /**
  * get standard cancelAnimationFrame
  */
 win.cancelAnimationFrame = win.cancelAnimationFrame ||
-win[vendorPrefix.js + 'CancelAnimationFrame'] ||
-win[vendorPrefix.js + 'CancelRequestAnimationFrame'];
+win[vendorPrefixJs + 'CancelAnimationFrame'] ||
+win[vendorPrefixJs + 'CancelRequestAnimationFrame'];
 
 
 if (!win.requestAnimationFrame) {

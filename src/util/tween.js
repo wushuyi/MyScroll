@@ -15,5 +15,4 @@ var easeInOutCubic = function(pos) {
     return 0.5 * (Math.pow((pos - 2), 3) + 2);
 };
 
-export var easeOutCubic = easeOutCubic;
-export var easeInOutCubic = easeInOutCubic;
+export {easeOutCubic, easeInOutCubic};

@@ -1270,11 +1270,6 @@ class Scroller {
             }
         }
     }
-
-    test() {
-        var self = this;
-        console.log(self);
-    }
 }
 
 export default Scroller;
