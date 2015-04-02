@@ -51,6 +51,7 @@
   "white": true,
   "esnext": true,
   "-W072": true,
+  "-W073": true,
   "globals": {
     "require": true,
     "document": true,
