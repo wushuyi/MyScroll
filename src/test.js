@@ -14,6 +14,7 @@ var EasyScroller = function(content, options) {
     this.scroller = new Scroller(function(left, top, zoom) {
         that.render(left, top, zoom);
     }, options);
+    this.scroller.test();
 
     // bind events
     this.bindEvents();
