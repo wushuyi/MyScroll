@@ -2,70 +2,49 @@
  * Created by shuyi.wu on 2015/4/1.
  */
 'use strict';
-var gulp = require('gulp');
-var webpack = require('gulp-webpack');
-var uglify = require('gulp-uglify');
+var gulp = require('gulp'),
+    uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
+    del = require('del'),
+    webpack = require('gulp-webpack');
 
-gulp.task('webpack', function() {
-    return gulp.src('src/index.js')
-        .pipe(webpack({
-            output:{
-                filename: 'build.js'
-            },
-            module:{
-                loaders: [
-                    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
-                ]
-            }
-        }))
-        .pipe(gulp.dest('dist/'));
-});
 
-gulp.task('webpack-dev', function() {
-    return gulp.src('src/index.js')
-        .pipe(webpack({
-            watch: true,
-            output:{
-                filename: 'build.js'
-            },
-            module:{
-                loaders: [
-                    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
-                ]
-            }
-        }))
-        .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('build', function() {
-    return gulp.src('src/easyMyScroll.js')
-        .pipe(webpack({
-            output:{
-                filename: 'build.min.js'
-            },
-            module:{
-                loaders: [
-                    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
-                ]
-            }
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('test', function() {
+gulp.task('compileES6', function () {
     return gulp.src('src/test.js')
         .pipe(webpack({
-            //watch: true,
-            output:{
-                filename: 'test.js'
-            },
-            module:{
+            module: {
                 loaders: [
-                    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
+                    {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
                 ]
             }
         }))
-        //.pipe(uglify())
-        .pipe(gulp.dest('./test/assets/js/'));
+        .pipe(rename('easyScroll.js'))
+        .pipe(gulp.dest('./dist'));
 });
+
+gulp.task('watch-compileES6', function () {
+    return gulp.src('src/test.js')
+        .pipe(webpack({
+            watch: true,
+            module: {
+                loaders: [
+                    {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
+                ]
+            }
+        }))
+        .pipe(rename('easyScroll.js'))
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('min', ['compileES6'], function () {
+    return gulp.src('./dist/easyScroll.js')
+        .pipe(uglify())
+        .pipe(rename('easyScroll.min.js'))
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('clean', function (cb) {
+    del('./dist/*', cb);
+});
+
+gulp.task('default', ['clean', 'min']);
